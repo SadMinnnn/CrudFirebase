@@ -9,6 +9,8 @@ Future<List> getEstudiantes() async {
     Map<String, dynamic> data = doc.data()! as Map<String, dynamic>;
     Map person = {
       "name": data["name"],
+       "age": data["age"],
+       "id": data["id"],
       "uid": doc.id,
     };
 
@@ -18,13 +20,13 @@ Future<List> getEstudiantes() async {
 }
 
 // Guardar un name en base de datos
-Future<void> addEstudiantes(String name) async {
-  await db.collection("Estudiantes").add({"name": name});
+Future<void> addEstudiantes(String name, String age,String id) async {
+  await db.collection("Estudiantes").add({"name": name,"age": age,"id": id});
 }
 
 // Actualizar un name en base de datos
-Future<void> updateEstudiantes(String uid, String name) async {
-  await db.collection("Estudiantes").doc(uid).set({"name": name});
+Future<void> updateEstudiantes(String uid, String name,String age, String id) async {
+  await db.collection("Estudiantes").doc(uid).set({"name": name,"age": age,"id": id});
 }
 
 // Borrar datos de Firebase
